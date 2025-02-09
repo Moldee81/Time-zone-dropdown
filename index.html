@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.46/moment-timezone-with-data-1970-2030.min.js"></script>
+    <title>Time zones dropdown</title>
+  </head>
+  <body>
+    <select id="countries">
+      <option value="paris" id="paris">Paris 🇫🇷</option>
+      <option value="tokyo" id="tokyo">Tokyo 🇯🇵</option>
+      <option value="sydney" id="sydney">Sydney 🇦🇺</option>
+    </select>
+    <script>
+      function showSelectedCountry(event) {
+        if (event.target.value === "paris") {
+          alert(`It is ${currentDataParis} in Europe/Paris`);
+        }
+        if (event.target.value === "tokyo") {
+          alert(`It is ${currentDataTokyo} in Asia/Tokyo`);
+        }
+        if (event.target.value === "sydney") {
+          alert(`It is ${currentDataSydney} in Australia/Sydney`);
+        }
+      }
+      let countriesSelect = document.querySelector("#countries");
+      countriesSelect.addEventListener("change", showSelectedCountry);
+      let currentDataParis = moment()
+        .tz("Europe/Paris")
+        .format("dddd, MMMM D, YYYY h:mm A ");
+      let currentDataTokyo = moment()
+        .tz("Asia/Tokyo")
+        .format("dddd, MMMM D, YYYY h:MM A");
+      let currentDataSydney = moment()
+        .tz("Australia/Sydney")
+        .format("dddd,MMMM D, YYYY h:mm A");
+    </script>
+  </body>
+</html>
